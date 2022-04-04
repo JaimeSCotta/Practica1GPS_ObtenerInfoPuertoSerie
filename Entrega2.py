@@ -1,9 +1,6 @@
 import serial
 import utm
 import threading
-import cv2
-import matplotlib.pyplot as plt
-import matplotlib.image as mpimg
 import pygame
 
 serialPort = serial.Serial(port = "COM3", baudrate=4800,
