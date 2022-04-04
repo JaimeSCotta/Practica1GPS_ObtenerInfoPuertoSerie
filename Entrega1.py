@@ -7,6 +7,7 @@ serialPort = serial.Serial(port = "COM3", baudrate=4800,
 lock=threading.Lock() 
 mensajeOriginal = bytearray(200)
 cabecera = bytearray(6)
+posicion = tuple()
 
 def latAgrados(mensajeOriginal):
   s = mensajeOriginal.split(",")
@@ -60,8 +61,9 @@ def caster(mensajeOriginal,lock):
   longitudEnGrados, dirLon = lonAgrados(mensajeOriginal)
   print ("Latitud", latitudEnGrados, "(",dirLat,")")
   print ("Longitud",longitudEnGrados,"(",dirLon,")")
-  X = utm.from_latlon(latitudEnGrados, -(longitudEnGrados))
-  print (X)
+  global posicion
+  posicion = utm.from_latlon(latitudEnGrados, longitudEnGrados)
+  print (posicion)
 
 
 while serialPort.isOpen():
